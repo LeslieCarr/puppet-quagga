@@ -32,19 +32,29 @@ $babeld = false)
     enable      => true,
   }
 
-  file { '/etc/quagga/Quagga.conf':
-    mode    => '0644',
-    owner   => 'quagga',
-    group   => 'quagga',
-    content => template('quagga/Quagga.conf.erb'),
-    notify  => Service['quagga'],
-  }
-
   file { '/etc/quagga/daemons':
     mode    => '0644',
     owner   => 'quagga',
     group   => 'quagga',
     content => template('quagga/daemons.erb'),
     notify  => Service['quagga'],
+  }
+
+  if $zebra == 'true' {
+    file { '/etc/quagga/zebra.conf':
+      mode    => '0644',
+      owner   => 'quagga',
+      group   => 'quagga',
+      content => template('quagga/zebra.conf.erb'),
+      notify  => Service['quagga'],
+    }
+  if $bgpd == 'true' {
+    file { '/etc/quagga/bgpd.conf':
+      mode    => '0644'.
+      owner   => 'quagga',
+      group   => 'quagga',
+      content => template('quagga/bgpd.conf/erb'),
+      notify  => Service['quagga'],
+    }
   }
 }
