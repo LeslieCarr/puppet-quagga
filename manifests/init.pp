@@ -21,8 +21,8 @@ $isisd  = false,
 $babeld = false)
 {
   package { 'quagga':
-    ensure      => present,
-    before      => Service['quagga']
+    ensure   => present,
+    before   => Service['quagga']
   }
 
   service { 'quagga':
@@ -33,16 +33,18 @@ $babeld = false)
   }
 
   file { '/etc/quagga/Quagga.conf':
-    mode        => '0644',
-    owner       => 'quagga',
-    group       => 'quagga',
-    content     => template('quagga/Quagga.conf.erb'),
+    mode    => '0644',
+    owner   => 'quagga',
+    group   => 'quagga',
+    content => template('quagga/Quagga.conf.erb'),
+    notify  => Service['quagga'],
   }
 
   file { '/etc/quagga/daemons':
-    mode        => '0644',
-    owner       => 'quagga',
-    group       => 'quagga',
-    content     => template('quagga/daemons.erb')
+    mode    => '0644',
+    owner   => 'quagga',
+    group   => 'quagga',
+    content => template('quagga/daemons.erb'),
+    notify  => Service['quagga'],
   }
 }
