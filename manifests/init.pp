@@ -40,6 +40,14 @@ $babeld = false)
     notify  => Service['quagga'],
   }
 
+  file { '/etc/quagga/vtysh.conf':
+    mode    => '0644',
+    owner   => 'quagga',
+    group   => 'quagga',
+    content => template('quagga/vtysh.conf.erb'),
+    notify  => Service['quagga'],
+  }
+    
   if $zebra == 'true' {
     file { '/etc/quagga/zebra.conf':
       mode    => '0644',

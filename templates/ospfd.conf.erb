@@ -1,0 +1,8 @@
+hostname ospfd
+log file /var/log/quagga/ospfd.log
+log timestamp precision 6
+!
+router ospf
+  ospf router-id <%= network_lo %>
+!
+line vty
