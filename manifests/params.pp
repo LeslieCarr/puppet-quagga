@@ -1,8 +1,16 @@
-# Variables 
+# Variables
 # NOTE: uncertain whether or not to have configuration file or everything parameters
-class quagga::configuration {
+class quagga::params {
 
-  $router_id = "$::network_lo"
+  $zebra  = true,
+  $bgpd   = false,
+  $ospfd  = false,
+  $ospf6d = false,
+  $ripd   = false,
+  $ripngd = false,
+  $isisd  = false,
+  $babeld = false)
+  $router_id = $::network_lo
   $AS = ''
   #$bgp_interfaces should be a list
   $bgp_interfaces = ''

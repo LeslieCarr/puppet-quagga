@@ -10,15 +10,7 @@
 #
 # === License
 # Apache v2
-class quagga(
-$zebra  = false,
-$bgpd   = false,
-$ospfd  = false,
-$ospf6d = false,
-$ripd   = false,
-$ripngd = false,
-$isisd  = false,
-$babeld = false)
+class quagga
 {
   package { 'quagga':
     ensure   => present,
@@ -48,35 +40,35 @@ $babeld = false)
     notify  => Service['quagga'],
   }
 
-  if $zebra == true {
+  if $quagga::params::zebra == true {
     include quagga::zebra
   }
 
-  if $bgpd == true {
+  if $quagga::params::bgpd == true {
     include quagga::bgpd
   }
 
-  if $ospfd == true {
+  if $quagga::params::ospfd == true {
     include quagga::ospfd
   }
 
-  if $ospf6d == true {
+  if $quagga::params::ospf6d == true {
     include quagga::ospf6d
   }
 
-  if $ripd == true {
+  if $quagga::params::ripd == true {
     include quagga::ripd
   }
 
-  if $ripngd == true {
+  if $quagga::params::ripngd == true {
     include quagga::ripngd
   }
 
-  if $isisd == true {
+  if $quagga::params::isisd == true {
     include quagga::isisd
   }
 
-  if $babeld == true {
+  if $quagga::params::babeld == true {
     include quagga::babeld
   }
 
