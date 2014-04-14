@@ -1,8 +1,17 @@
-hostname ospfd
-log file /var/log/quagga/ospfd.log
+hostname <%= @hostname %>
+password <%= scope.lookupvar('quagga::params:password') %>
+log file <%= scope.lookupvar('quagga::params::bgp_logfile') %>
 log timestamp precision 6
 !
+<% ospf_interfaces.each do |key,value| -%>
+  interface <%= value['interface'] %>
+    ip ospf area <%= value['area'] %>
+!
+<%  end -%>
+!
 router ospf
-  ospf router-id <%= network_lo %>
+  ospf router-id <%= scope.lookupvar('quagga::params::router_id') %>
+  log-adjacency-changes detail
 !
 line vty
+!

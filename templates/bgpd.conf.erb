@@ -1,0 +1,18 @@
+hostname <%= scope.lookupvar('quagga::params::hostname') %>
+password <%= scope.lookupvar('quagga::params:password') %>
+log file <%= scope.lookupvar('quagga::params::bgp_logfile') %>
+log timestamp precision 6
+!
+router bgp <%= scope.lookupvar('quagga::params::as') %>
+bgp log-neighbor-changes
+<% if scope.lookupvar('quagga::params::bgp_comparemed') %>
+  bgp always-compare-med
+<% end %>
+!
+<% bgp_neighbors.each do |key,value| -%>
+  neighbor <%= value['neighbor_ip'] %> remote-as <%= value['neighbor_as'] %>
+
+<% end -%>
+!
+line vty
+!
