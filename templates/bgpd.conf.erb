@@ -40,4 +40,8 @@ neighbor <%= value['neighbor_ip'] %> prefix-list <%= value['prefix_list_out'] %>
 <% end -%>
 
 <% end %>
+
+<% @ip_prefix_list.each do |value| -%>
+  ip prefix-list <%= value %>
+<% end %>
 <% if @bgp_logfile%>log file <%= @bgp_logfile %><% else %>log syslog<% end -%>

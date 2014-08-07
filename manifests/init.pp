@@ -21,6 +21,7 @@ class quagga (
 	$bgpd = $::quagga::params::bgpd,
 	$zebra = $::quagga::params::zebra,
 	$bgp_neighbors = $::quagga::params::bgp_neighbors,
+	$ip_prefix_list = $::quagga::params::ip_prefix_list,
 ) inherits quagga::params
 {
   package { 'quagga':
