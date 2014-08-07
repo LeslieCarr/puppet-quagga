@@ -25,7 +25,7 @@ zebra=yes
 <% else %>
 zebra=no
 <% end  %>
-<% if scope.lookupvar('quagga::params::bgpd') %>
+<% if scope.lookupvar('$::quagga::params::bgpd') %>
 bgpd=yes
 <% else %>
 bgpd=no
