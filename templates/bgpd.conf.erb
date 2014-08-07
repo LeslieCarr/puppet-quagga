@@ -8,7 +8,9 @@ enable password <%= @enable %>
 
 router bgp <%= @as %>
 	bgp router-id <%= @bgp_router_id %>
-	network <%= @network %>
+<% @network.each do |value| -%>
+	network <%= value %>
+<% end -%>
 
 <% if scope.lookupvar('quagga::params::bgp_comparemed') %>  bgp always-compare-med <% end -%>
 
@@ -42,6 +44,7 @@ neighbor <%= value['neighbor_ip'] %> prefix-list <%= value['prefix_list_out'] %>
 <% end %>
 
 <% @ip_prefix_list.each do |value| -%>
-  ip prefix-list <%= value %>
-<% end %>
+ip prefix-list <%= value %>
+<% end -%>
+
 <% if @bgp_logfile%>log file <%= @bgp_logfile %><% else %>log syslog<% end -%>
