@@ -3,7 +3,7 @@
 class quagga::ospf6d {
 
     file { '/etc/quagga/ospf6d.conf':
-      mode    => '0644'.
+      mode    => '0644',
       owner   => 'quagga',
       group   => 'quagga',
       content => template('quagga/ospf6d.conf.erb'),

@@ -10,7 +10,18 @@
 #
 # === License
 # Apache v2
-class quagga
+class quagga (
+	$as = $::quagga::params::as,
+	$hostname = $::quagga::params::hostname,
+	$password = $::quagga::params::password,
+	$enable = $::quagga::params::enable,
+	$network = $::quagga::params::network,
+	$bgp_router_id = $::quagga::params::bgp_router_id,
+	$bgp_logfile = $::quagga::params::bgp_logfile,
+	$bgpd = $::quagga::params::bgpd,
+	$zebra = $::quagga::params::zebra,
+	$bgp_neighbors = $::quagga::params::bgp_neighbors,
+) inherits quagga::params
 {
   package { 'quagga':
     ensure   => present,
@@ -40,35 +51,35 @@ class quagga
     notify  => Service['quagga'],
   }
 
-  if $quagga::params::zebra == true {
+  if $zebra == true {
     include quagga::zebra
   }
 
-  if $quagga::params::bgpd == true {
+  if $bgpd == true {
     include quagga::bgpd
   }
 
-  if $quagga::params::ospfd == true {
+  if $ospfd == true {
     include quagga::ospfd
   }
 
-  if $quagga::params::ospf6d == true {
+  if $ospf6d == true {
     include quagga::ospf6d
   }
 
-  if $quagga::params::ripd == true {
+  if $ripd == true {
     include quagga::ripd
   }
 
-  if $quagga::params::ripngd == true {
+  if $ripngd == true {
     include quagga::ripngd
   }
 
-  if $quagga::params::isisd == true {
+  if $isisd == true {
     include quagga::isisd
   }
 
-  if $quagga::params::babeld == true {
+  if $babeld == true {
     include quagga::babeld
   }
 

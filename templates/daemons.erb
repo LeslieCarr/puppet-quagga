@@ -20,7 +20,7 @@
 #
 # The watchquagga daemon is always started. Per default in monitoring-only but
 # that can be changed via /etc/quagga/debian.conf.
-<% if scope.lookupvar('quagga::params::zebra') %>
+<% if @zebra %>
 zebra=yes
 <% else %>
 zebra=no

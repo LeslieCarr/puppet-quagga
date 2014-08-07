@@ -3,7 +3,7 @@
 class quagga::ripd {
 
     file { '/etc/quagga/ripd.conf':
-      mode    => '0644'.
+      mode    => '0644',
       owner   => 'quagga',
       group   => 'quagga',
       content => template('quagga/ripd.conf.erb'),
