@@ -5,22 +5,39 @@
 hostname <%= @hostname %>
 password <%= @password %>
 enable password <%= @enable %>
-!
+
 router bgp <%= @as %>
 	bgp router-id <%= @bgp_router_id %>
 	network <%= @network %>
 
-<% if scope.lookupvar('quagga::params::bgp_comparemed') %>  bgp always-compare-med <% end %>
-!
+<% if scope.lookupvar('quagga::params::bgp_comparemed') %>  bgp always-compare-med <% end -%>
+
 <% @bgp_neighbors.each do |key,value| -%>
   neighbor <%= value['neighbor_ip'] %> remote-as <%= value['neighbor_as'] %>
-<% if value['description'] %>  neighbor <%= value['neighbor_ip'] %> description <%= value['description'] %> <% end %>
-<% if value['route_map_in'] %>  neighbor <%= value['neighbor_ip'] %> route-map <%= value['route_map_in'] %> in <% end %>
-<% if value['route_map_out'] %>  neighbor <%= value['neighbor_ip'] %> route-map <%= value['route_map_out'] %> out <% end %>
-<% if value['prefix_list_in'] %>  neighbor <%= value['neighbor_ip'] %> prefix-list <%= value['prefix_list_in'] %> in <% end %>
-<% if value['prefix_list_out'] %>  neighbor <%= value['neighbor_ip'] %> prefix-list <%= value['prefix_list_out'] %> out <% end %>
-<% if value['filter_list_in'] %>  neighbor <%= value['neighbor_ip'] %> filter-list <%= value['filter_list_in'] %> in <% end %>
-<% if value['filter_list_out'] %>  neighbor <%= value['neighbor_ip'] %> filter-list <%= value['filter_list_out'] %> out <% end %>
-
+<% if value['description'] -%>
+  neighbor <%= value['neighbor_ip'] %> description <%= value['description'] %>
 <% end -%>
-<% if @bgp_logfile%>log file <%= @bgp_logfile %><% else %>log syslog<% end %>
+<% if value['route_map_in'] -%>
+  neighbor <%= value['neighbor_ip'] %> route-map <%= value['route_map_in'] %> in
+<% end -%>
+<% if value['route_map_out'] -%>
+  neighbor <%= value['neighbor_ip'] %> route-map <%= value['route_map_out'] %> out
+<% end -%>
+<% if value['prefix_list_in'] -%>
+  neighbor <%= value['neighbor_ip'] %> prefix-list <%= value['prefix_list_in'] %> in
+<% end -%>
+<% if value['prefix_list_out'] -%>
+neighbor <%= value['neighbor_ip'] %> prefix-list <%= value['prefix_list_out'] %> out
+<% end -%>
+<% if value['filter_list_in'] -%>
+  neighbor <%= value['neighbor_ip'] %> filter-list <%= value['filter_list_in'] %> in
+<% end -%>
+<% if value['filter_list_out'] -%>
+  neighbor <%= value['neighbor_ip'] %> filter-list <%= value['filter_list_out'] %> out
+<% end -%>
+<% if value['next_hop_self'] -%>
+  neighbor <%= value['neighbor_ip'] %> next-hop-self
+<% end -%>
+
+<% end %>
+<% if @bgp_logfile%>log file <%= @bgp_logfile %><% else %>log syslog<% end -%>
