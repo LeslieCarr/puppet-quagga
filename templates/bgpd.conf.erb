@@ -6,10 +6,10 @@ hostname <%= @hostname %>
 password <%= @password %>
 enable password <%= @enable %>
 
-router bgp <%= @as %>
-	bgp router-id <%= @router_id %>
+router bgp <%= @asn %>
+  bgp router-id <%= @router_id %>
 <% @network.each do |value| -%>
-	network <%= value %>
+  network <%= value %>
 <% end -%>
 
 <% if scope.lookupvar('quagga::params::bgp_comparemed') %>  bgp always-compare-med <% end -%>
@@ -86,6 +86,7 @@ route-map <%= key %> <%= value['action'] %> <%= value['order'] %>
 <% end -%>
 
 <% if @bgp_logfile%>log file <%= @bgp_logfile %><% else %>log syslog<% end -%>
+
 !
 line vty
 !

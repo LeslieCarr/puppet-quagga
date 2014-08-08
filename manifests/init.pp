@@ -11,7 +11,7 @@
 # === License
 # Apache v2
 class quagga (
-  $as = $::quagga::params::as,
+  $asn = $::quagga::params::asn,
   $hostname = $::quagga::params::hostname,
   $password = $::quagga::params::password,
   $enable = $::quagga::params::enable,
@@ -25,7 +25,6 @@ class quagga (
   $route_map = $::quagga::params::route_map,
 )
 {
-
   include quagga::params
 
   package { 'quagga':
@@ -56,35 +55,35 @@ class quagga (
     notify  => Service['quagga'],
   }
 
-  if $::zebra == true {
+  if $zebra == true {
     include quagga::zebra
   }
 
-  if $::bgpd == true {
+  if $bgpd == true {
     include quagga::bgpd
   }
 
-  if $::ospfd == true {
+  if $ospfd == true {
     include quagga::ospfd
   }
 
-  if $::ospf6d == true {
+  if $ospf6d == true {
     include quagga::ospf6d
   }
 
-  if $::ripd == true {
+  if $ripd == true {
     include quagga::ripd
   }
 
-  if $::ripngd == true {
+  if $ripngd == true {
     include quagga::ripngd
   }
 
-  if $::isisd == true {
+  if $isisd == true {
     include quagga::isisd
   }
 
-  if $::babeld == true {
+  if $babeld == true {
     include quagga::babeld
   }
 
