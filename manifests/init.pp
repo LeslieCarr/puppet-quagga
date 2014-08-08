@@ -22,6 +22,7 @@ class quagga (
 	$zebra = $::quagga::params::zebra,
 	$bgp_neighbors = $::quagga::params::bgp_neighbors,
 	$ip_prefix_list = $::quagga::params::ip_prefix_list,
+	$route_map = $::quagga::params::route_map,
 ) inherits quagga::params
 {
   package { 'quagga':

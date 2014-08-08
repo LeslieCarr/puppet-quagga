@@ -43,8 +43,49 @@ neighbor <%= value['neighbor_ip'] %> prefix-list <%= value['prefix_list_out'] %>
 
 <% end %>
 
-<% @ip_prefix_list.each do |value| -%>
-ip prefix-list <%= value %>
+<% if @ip_prefix_list %>
+<% @ip_prefix_list.each do |key,value| -%>
+<% if value['description'] -%>
+ip prefix-list <%= value['name'] %> description  <%= value['description'] %>
+<% end -%>
+<% if value['num'] -%>
+ip prefix-list <%= value['name'] %> seq <%= value['num'] %> <%= value['action'] %> <%= value['prefix'] %>
+<% end -%>
+<% end -%>
+<% end -%>
+
+<% if @route_map %>
+<% @route_map.each do |key,value| -%>
+route-map <%= value['name'] %> <%= value['action'] %> <%= value['order'] %>
+<% if value['ip_next_hop'] -%>
+  set ip next-hop <%= value['ip_next_hop'] %>
+<% end -%>
+<% if value['local_preference'] -%>
+  set local-preference <%= value['local_preference'] %>
+<% end -%>
+<% if value['weight'] -%>
+  set weight <%= value['weight'] %>
+<% end -%>
+<% if value['metric'] -%>
+  set metric <%= value['metric'] %>
+<% end -%>
+<% if value['as_path_prepend'] -%>
+  set as-path prepend <%= value['as_path_prepend'] %>
+<% end -%>
+<% if value['community'] -%>
+  set community <%= value['community'] %>
+<% end -%>
+<% if value['ipv6_next_hop_global'] -%>
+  set ipv6 next-hop global <%= value['ipv6_next_hop_global'] %>
+<% end -%>
+<% if value['ipv6_next_hop_local'] -%>
+  set ipv6 next-hop local <%= value['ipv6_next_hop_local'] %>
+<% end -%>
+
+<% end -%>
 <% end -%>
 
 <% if @bgp_logfile%>log file <%= @bgp_logfile %><% else %>log syslog<% end -%>
+!
+line vty
+!
