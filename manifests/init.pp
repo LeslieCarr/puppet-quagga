@@ -16,7 +16,7 @@ class quagga (
 	$password = $::quagga::params::password,
 	$enable = $::quagga::params::enable,
 	$network = $::quagga::params::network,
-	$bgp_router_id = $::quagga::params::bgp_router_id,
+	$router_id = $::quagga::params::router_id,
 	$bgp_logfile = $::quagga::params::bgp_logfile,
 	$bgpd = $::quagga::params::bgpd,
 	$zebra = $::quagga::params::zebra,

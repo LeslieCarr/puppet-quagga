@@ -1,6 +1,11 @@
 # Variables
 # NOTE: uncertain whether or not to have configuration file or everything parameters
 class quagga::params {
+
+if ! $router_id {
+	$router_id = $::network_lo
+}
+
   $bgp_alwayscomparemed = false
 #  $bgp_logfile = '/var/log/quagga/bgpd.log'
 
