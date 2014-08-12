@@ -10,8 +10,28 @@
 #
 # === License
 # Apache v2
-class quagga
+class quagga (
+  $asn = $::quagga::params::asn,
+  $hostname = $::quagga::params::hostname,
+  $password = $::quagga::params::password,
+  $enable = $::quagga::params::enable,
+  $network = $::quagga::params::network,
+  $router_id = $::quagga::params::router_id,
+  $bgp_logfile = $::quagga::params::bgp_logfile,
+  $bgpd = $::quagga::params::bgpd,
+  $zebra = $::quagga::params::zebra,
+  $isisd = $::quagga::params::isisd,
+  $ospfd = $::quagga::params::ospfd,
+  $ospf6d = $::quagga::params::ospf6d,
+  $ripd = $::quagga::params::rip,
+  $ripngd = $::quagga::params::ripngd,
+  $bgp_neighbors = $::quagga::params::bgp_neighbors,
+  $ip_prefix_list = $::quagga::params::ip_prefix_list,
+  $route_map = $::quagga::params::route_map,
+)
 {
+  include quagga::params
+
   package { 'quagga':
     ensure   => present,
     before   => Service['quagga']
@@ -40,35 +60,35 @@ class quagga
     notify  => Service['quagga'],
   }
 
-  if $quagga::params::zebra == true {
+  if $zebra == true {
     include quagga::zebra
   }
 
-  if $quagga::params::bgpd == true {
+  if $bgpd == true {
     include quagga::bgpd
   }
 
-  if $quagga::params::ospfd == true {
+  if $ospfd == true {
     include quagga::ospfd
   }
 
-  if $quagga::params::ospf6d == true {
+  if $ospf6d == true {
     include quagga::ospf6d
   }
 
-  if $quagga::params::ripd == true {
+  if $ripd == true {
     include quagga::ripd
   }
 
-  if $quagga::params::ripngd == true {
+  if $ripngd == true {
     include quagga::ripngd
   }
 
-  if $quagga::params::isisd == true {
+  if $isisd == true {
     include quagga::isisd
   }
 
-  if $quagga::params::babeld == true {
+  if $babeld == true {
     include quagga::babeld
   }
 

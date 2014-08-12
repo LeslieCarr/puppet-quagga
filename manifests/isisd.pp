@@ -3,7 +3,7 @@
 class quagga::isisd {
 
     file { '/etc/quagga/isisd.conf':
-      mode    => '0644'.
+      mode    => '0644',
       owner   => 'quagga',
       group   => 'quagga',
       content => template('quagga/isisd.conf.erb'),
