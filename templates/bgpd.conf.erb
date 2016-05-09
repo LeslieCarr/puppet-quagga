@@ -1,5 +1,5 @@
 hostname <%= scope.lookupvar('quagga::params::hostname') %>
-password <%= scope.lookupvar('quagga::params:password') %>
+password <%= scope.lookupvar('quagga::params::password') %>
 log file <%= scope.lookupvar('quagga::params::bgp_logfile') %>
 log timestamp precision 6
 !
