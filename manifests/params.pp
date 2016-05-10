@@ -17,10 +17,12 @@ class quagga::params {
   $password = 'pass123'
   $router_id = $::network_lo
 
+  #zebra variables
+  $zebra_password = 'cn321'
+  $zebra_enable_password = 'cn321'
   #BGP variables
   $bgp_hostname = 'bgpd'
   $bgp_password = 'cn321'
-  $bgp_enable_password = 'cn321'
   $bgp_bgp_comparemed = false
   $bgp_as = '65001'
   $bgp_alwayscomparemed = false
