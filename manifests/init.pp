@@ -11,16 +11,16 @@
 # === License
 # Apache v2
 class quagga (
-  $manage_package = $quagga::params::manage_package
-  $manage_service = $quagga::params::manage_service
-  $zebra          = $quagga::params::zebra
-  $bgpd           = $quagga::params::bgpd
-  $ospfd          = $quagga::params::ospfd
-  $ospf6d         = $quagga::params::ospf6d
-  $ripd           = $quagga::params::ripd
-  $ripngd         = $quagga::params::ripngd
-  $isisd          = $quagga::params::isisd
-  $babeld         = $quagga::params::babeld
+  $manage_package = $quagga::params::manage_package,
+  $manage_service = $quagga::params::manage_service,
+  $zebra          = $quagga::params::zebra,
+  $bgpd           = $quagga::params::bgpd,
+  $ospfd          = $quagga::params::ospfd,
+  $ospf6d         = $quagga::params::ospf6d,
+  $ripd           = $quagga::params::ripd,
+  $ripngd         = $quagga::params::ripngd,
+  $isisd          = $quagga::params::isisd,
+  $babeld         = $quagga::params::babeld,
 ) inherits quagga::params {
   if $manage_package {
     package { 'quagga':
