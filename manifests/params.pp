@@ -20,6 +20,7 @@ class quagga::params {
   #zebra variables
   $zebra_password = 'cn321'
   $zebra_enable_password = 'cn321'
+  $zebra_log_file = '/var/log/quagga/zebra.log'
   #BGP variables
   $bgp_hostname = 'bgpd'
   $bgp_password = 'cn321'
