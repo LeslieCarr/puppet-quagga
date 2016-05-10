@@ -1,11 +1,11 @@
-hostname <%= scope.lookupvar('quagga::params::hostname') %>
-password <%= scope.lookupvar('quagga::params::password') %>
-log file <%= scope.lookupvar('quagga::params::bgp_logfile') %>
+hostname <%= scope.lookupvar('bgp_hostname') %>
+password <%= scope.lookupvar('bgp_password') %>
+log file <%= scope.lookupvar('bgp_logfile') %>
 log timestamp precision 6
 !
-router bgp <%= scope.lookupvar('quagga::params::as') %>
+router bgp <%= scope.lookupvar('bgp_as') %>
 bgp log-neighbor-changes
-<% if scope.lookupvar('quagga::params::bgp_comparemed') %>
+<% if scope.lookupvar('bgp_comparemed') %>
   bgp always-compare-med
 <% end %>
 !
