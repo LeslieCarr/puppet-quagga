@@ -28,11 +28,18 @@ class quagga::params {
   $bgp_as = '65001'
   $bgp_alwayscomparemed = false
   $bgp_logfile = '/var/log/quagga/bgpd.log'
+  #$bgp_neighbor_group is a hash of arrays with group names and options, ie
+  # quagga::bgpd::bgp_neighbor_groups => { 'name-of-group': options => [ 'peer-group', 'remote-as 65535', ], members => [ '192.168.0.10', '192.168.0.11', ], }
+  $bgp_neighbor_groups = undef
+  #$bgp_accesslists is a hash of arrays with list names and rules, ie
+  # quagga::bgpd::bgp_accesslists => { '10' => [ 'permit 10.0.0.0 0.0.0.255', 'permit 192.168.0.0 0.0.255.255', ], }
+  $bgp_accesslist = undef
+  #$bgp_ip-route is an array of routes, ie
+  # quagga::bgpd::bgp_ip-route => [ '0.0.0.0/0 192.168.0.1', '10.0.0.0/24 10.0.0.1', ],
+  $bgp_ip_route = undef
   #$bgp_neighbors is an array in the format 
   # ISP1 => { 'neighbor_ip' => '192.0.2.1', 'neighbor_as' => '65001' }
-  $bgp_neighbors = {
-    neighbor1 => { 'neighbor_ip' => '192.0.2.1', 'neighbor_as' => '65001' },
-  }
+  $bgp_neighbors = undef
 
   #OSPF variables
   $ospf_logfile = '/var/log/quagga/ospfd.log'

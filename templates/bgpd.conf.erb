@@ -9,9 +9,22 @@ bgp log-neighbor-changes
   bgp always-compare-med
 <% end %>
 !
-<% bgp_neighbors.each do |key,value| -%>
+<% if @bgp_neighbor_groups -%><% bgp_neighbor_groups.each do |name| %><% (0..name[1]['options'].length).each do |i| %><%
+ if name[1]['options'][i] %> neighbor <%= name[0] %> <%= name[1]['options'][i]%>
+<% end %><% end %><% if name[1]['members'] %><%
+(0..name[1]['members'].length).each do |i| %><% if name[1]['members'][i] %> neighbor <%= name[1]['members'][i]%> peer-group <%= name[0] %>
+<% end %><% end %><% end %><% end %>!
+<% end -%>
+<% if @bgp_ip_routes -%><% (1..bgp_ip_routes.length).each do |i| %> ip route <%= bgp_ip_routes[i-1] %>
+<% end%>!
+<% end -%>
+<% if @bgp_accesslist -%><% bgp_accesslist.each do |name| %><% (0..name[1].length).each do |i| %><%
+ if name[1][i] %> access-list <%= name[0] %> <%= name[1][i]%>
+<% end %><% end %><% end %>!
+<% end -%>
+<% if @bgp_neighbors -%><% bgp_neighbors.each do |key,value| %>
   neighbor <%= value['neighbor_ip'] %> remote-as <%= value['neighbor_as'] %>
-
+<% end %>!
 <% end -%>
 !
 line vty
