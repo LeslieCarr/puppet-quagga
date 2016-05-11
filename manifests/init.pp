@@ -33,7 +33,7 @@ class quagga (
     service { 'quagga':
       ensure      => running,
       hasrestart  => true,
-      hasstatus   => true,
+      hasstatus   => false,
       enable      => true,
     }
 
