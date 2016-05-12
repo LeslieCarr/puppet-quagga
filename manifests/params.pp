@@ -42,6 +42,8 @@ class quagga::params {
   #$bgp_neighbor_group is a hash of arrays with group names and options, ie
   # quagga::bgpd::bgp_neighbor_groups => { 'name-of-group': options => [ 'peer-group', 'remote-as 65535', ], members => [ '192.168.0.10', '192.168.0.11', ], }
   $bgp_neighbor_groups = undef
+  #$bgp_neighbors is an array of of neighbor comands
+  $bgp_neighbors = undef
   #$bgp_accesslists is a hash of arrays with list names and rules, ie
   # quagga::bgpd::bgp_accesslists => { '10' => [ 'permit 10.0.0.0 0.0.0.255', 'permit 192.168.0.0 0.0.255.255', ], }
   $bgp_accesslist = undef
@@ -53,10 +55,7 @@ class quagga::params {
   $bgp_route_maps = undef
   #$bgp_generic_options is a hash of generic options for bgpd
   $bgp_generic_options = undef
-  #$bgp_neighbors is an array in the format 
-  # ISP1 => { 'neighbor_ip' => '192.0.2.1', 'neighbor_as' => '65001' }
-  $bgp_neighbors = undef
-
+  
   #OSPF variables
   $ospf_logfile = '/var/log/quagga/ospfd.log'
   #$ospf_interfaces is an array in the format 
