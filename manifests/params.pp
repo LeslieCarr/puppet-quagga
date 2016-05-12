@@ -25,7 +25,6 @@ class quagga::params {
   $bgp_hostname = 'bgpd'
   $bgp_password = 'cn321'
   $bgp_as = '65001'
-  $bgp_alwayscomparemed = false
   $bgp_logfile = '/var/log/quagga/bgpd.log'
   #$bgp_options is an array of bgp options, ie
   # uagga::bgpd::bgp_options => [ 'log-neighbor-changes', 'router-id 192.168.0.1', ],
