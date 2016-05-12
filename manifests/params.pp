@@ -24,10 +24,13 @@ class quagga::params {
   #BGP variables
   $bgp_hostname = 'bgpd'
   $bgp_password = 'cn321'
-  $bgp_bgp_comparemed = false
+  $bgp_comparemed = false
   $bgp_as = '65001'
   $bgp_alwayscomparemed = false
   $bgp_logfile = '/var/log/quagga/bgpd.log'
+  #$bgp_options is an array of bgp options, ie
+  # uagga::bgpd::bgp_options => [ 'log-neighbor-changes', 'router-id 192.168.0.1', ],
+  $bgp_options = undef
   #$bgp_neighbor_group is a hash of arrays with group names and options, ie
   # quagga::bgpd::bgp_neighbor_groups => { 'name-of-group': options => [ 'peer-group', 'remote-as 65535', ], members => [ '192.168.0.10', '192.168.0.11', ], }
   $bgp_neighbor_groups = undef
