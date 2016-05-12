@@ -24,7 +24,6 @@ class quagga::params {
   #BGP variables
   $bgp_hostname = 'bgpd'
   $bgp_password = 'cn321'
-  $bgp_comparemed = false
   $bgp_as = '65001'
   $bgp_alwayscomparemed = false
   $bgp_logfile = '/var/log/quagga/bgpd.log'
