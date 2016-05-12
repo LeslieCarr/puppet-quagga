@@ -2,4 +2,6 @@ hostname zebra
 password <%= @zebra_password %>
 enable password <%= @zebra_enable_password %>
 log file <%= @zebra_log_file %>
-
+<% if @zebra_ip_routes -%><% (1..zebra_ip_routes.length).each do |i| %> ip route <%= zebra_ip_routes[i-1] %>
+<% end%>!
+<% end -%>

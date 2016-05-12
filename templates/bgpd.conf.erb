@@ -16,9 +16,6 @@ router bgp <%= scope.lookupvar('bgp_as') %>
 (0..name[1]['members'].length).each do |i| %><% if name[1]['members'][i] %> neighbor <%= name[1]['members'][i]%> peer-group <%= name[0] %>
 <% end %><% end %><% end %><% end %>!
 <% end -%>
-<% if @bgp_ip_routes -%><% (1..bgp_ip_routes.length).each do |i| %> ip route <%= bgp_ip_routes[i-1] %>
-<% end%>!
-<% end -%>
 <% if @bgp_accesslist -%><% bgp_accesslist.each do |name| %><% (0..name[1].length).each do |i| %><%
  if name[1][i] %> access-list <%= name[0] %> <%= name[1][i]%>
 <% end %><% end %><% end %>!
