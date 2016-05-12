@@ -25,10 +25,9 @@ bgp log-neighbor-changes
 <% if @bgp_ip_prefix_list -%><% (1..bgp_ip_prefix_list.length).each do |i| %> ip prefix-list <%= bgp_ip_prefix_list[i-1] %>
 <% end%>!
 <% end -%>
-<% if @bgp_route_maps -%><% bgp_route_maps.each do |name| %><% (0..name[1].length).each do |i| %><%
- if name[1][i] %> route-map <%= name[0] %> <%= name[1][i]%>
-<% end %><% end %><% end %>!
-<% end -%>
+<% if @bgp_route_maps -%><% bgp_route_maps.each do |name| %> route-map <%= name[0] %> <% (0..name[1].length).each do |i| %>
+<% if name[1][i] %>  <%= name[1][i]%><% end %><% end %>!
+<% end %><% end -%>
 <% if @bgp_neighbors -%><% bgp_neighbors.each do |key,value| %>
   neighbor <%= value['neighbor_ip'] %> remote-as <%= value['neighbor_as'] %>
 <% end %>!
