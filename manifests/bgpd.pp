@@ -10,6 +10,7 @@ class quagga::bgpd (
   $bgp_neighbor_groups = $quagga::params::bgp_neighbor_groups,
   $bgp_accesslist      = $quagga::params::bgp_accesslist,
   $bgp_ip_routes       = $quagga::params::bgp_ip_routes,
+  $bgp_ip_prefix_list  = $quagga::params::bgp_ip_prefix_list,
 ) {
 
   file { '/etc/quagga/bgpd.conf':

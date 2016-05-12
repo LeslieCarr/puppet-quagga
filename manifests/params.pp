@@ -37,6 +37,9 @@ class quagga::params {
   #$bgp_ip-route is an array of routes, ie
   # quagga::bgpd::bgp_ip-route => [ '0.0.0.0/0 192.168.0.1', '10.0.0.0/24 10.0.0.1', ],
   $bgp_ip_route = undef
+  #$bgp_ip_prefix is an array of ip prefixes, ie
+  # quagga::bgpd::bgp_ip_prefix_list => [ 'routes-from-external seq 5 deny any', 'routes-to-external seq 5 permit 0.0.0.0/0', ],
+  $bgp_ip_prefix_list = undef
   #$bgp_neighbors is an array in the format 
   # ISP1 => { 'neighbor_ip' => '192.0.2.1', 'neighbor_as' => '65001' }
   $bgp_neighbors = undef
