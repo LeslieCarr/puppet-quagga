@@ -10,7 +10,6 @@ class quagga::bgpd (
   $bgp_neighbors       = $quagga::params::bgp_neighbors,
   $bgp_neighbor_groups = $quagga::params::bgp_neighbor_groups,
   $bgp_accesslist      = $quagga::params::bgp_accesslist,
-  $bgp_ip_routes       = $quagga::params::bgp_ip_routes,
   $bgp_ip_prefix_list  = $quagga::params::bgp_ip_prefix_list,
   $bgp_route_maps      = $quagga::params::bgp_route_maps,
   $bgp_generic_options = $quagga::params::bgp_generic_options,

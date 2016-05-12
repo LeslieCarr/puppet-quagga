@@ -5,3 +5,6 @@ log file <%= @zebra_log_file %>
 <% if @zebra_ip_routes -%><% (1..zebra_ip_routes.length).each do |i| %> ip route <%= zebra_ip_routes[i-1] %>
 <% end%>!
 <% end -%>
+<% if @zebra_generic_options -%><% zebra_generic_options.each do |name| %> <%= name[0] %> <%= name[1] %>
+<% end %><% end -%>
+!

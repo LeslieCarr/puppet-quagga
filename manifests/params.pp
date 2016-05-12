@@ -21,6 +21,13 @@ class quagga::params {
   $zebra_password = 'cn321'
   $zebra_enable_password = 'cn321'
   $zebra_log_file = '/var/log/quagga/zebra.log'
+  #$zebra_ip-route is an array of routes, ie
+  # quagga::zebra:bgp_ip-route => [ '0.0.0.0/0 192.168.0.1', '10.0.0.0/24 10.0.0.1', ],
+  $zebra_ip_route = undef
+  #$zebra_generic_options is an array of generic options for bgpd, ie
+  # quagga::zebra::zebra_generic_options => { 'ip' => 'forwarding', 'ipv6' => 'forwarding' }
+  $zebra_generic_options = undef
+
   #BGP variables
   $bgp_hostname = 'bgpd'
   $bgp_password = 'cn321'
@@ -38,17 +45,13 @@ class quagga::params {
   #$bgp_accesslists is a hash of arrays with list names and rules, ie
   # quagga::bgpd::bgp_accesslists => { '10' => [ 'permit 10.0.0.0 0.0.0.255', 'permit 192.168.0.0 0.0.255.255', ], }
   $bgp_accesslist = undef
-  #$bgp_ip-route is an array of routes, ie
-  # quagga::bgpd::bgp_ip-route => [ '0.0.0.0/0 192.168.0.1', '10.0.0.0/24 10.0.0.1', ],
-  $bgp_ip_route = undef
   #$bgp_ip_prefix is an array of ip prefixes, ie
   # quagga::bgpd::bgp_ip_prefix_list => [ 'routes-from-external seq 5 deny any', 'routes-to-external seq 5 permit 0.0.0.0/0', ],
   $bgp_ip_prefix_list = undef
   #$bgp_route_maps is a hash of arrays with route-maps with options, ie
   # quagga::bgpd::bgp_route_maps => { 'ADVERTS permit 5' => [ 'match ip address prefix-list routes-from-external ', ' set as-path prepend 123 123', ], }
   $bgp_route_maps = undef
-  #$bgp_generic_options is an array of generic options for bgpd, ie
-  # quagga::bgpd::bgp_generic_options => { 'ip' => 'forwarding', 'ipv6' => 'forwarding' }
+  #$bgp_generic_options is a hash of generic options for bgpd
   $bgp_generic_options = undef
   #$bgp_neighbors is an array in the format 
   # ISP1 => { 'neighbor_ip' => '192.0.2.1', 'neighbor_as' => '65001' }
