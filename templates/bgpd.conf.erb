@@ -5,7 +5,8 @@ log timestamp precision 6
 !
 router bgp <%= scope.lookupvar('bgp_as') %>
 <% if @bgp_options -%><% (1..bgp_options.length).each do |i| %> bgp <%= bgp_options[i-1] %>
-<% end%>!<% end -%>
+<% end%>!
+<% end -%>
 <% if @bgp_neighbor_groups -%><% bgp_neighbor_groups.each do |name| %><% (0..name[1]['options'].length).each do |i| %><%
  if name[1]['options'][i] %> neighbor <%= name[0] %> <%= name[1]['options'][i]%>
 <% end %><% end %><% if name[1]['members'] %><%
