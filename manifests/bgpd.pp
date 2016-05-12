@@ -13,6 +13,7 @@ class quagga::bgpd (
   $bgp_ip_routes       = $quagga::params::bgp_ip_routes,
   $bgp_ip_prefix_list  = $quagga::params::bgp_ip_prefix_list,
   $bgp_route_maps      = $quagga::params::bgp_route_maps,
+  $bgp_generic_options = $quagga::params::bgp_generic_options,
 ) {
 
   file { '/etc/quagga/bgpd.conf':

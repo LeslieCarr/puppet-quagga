@@ -33,6 +33,8 @@ router bgp <%= scope.lookupvar('bgp_as') %>
   neighbor <%= value['neighbor_ip'] %> remote-as <%= value['neighbor_as'] %>
 <% end %>!
 <% end -%>
+<% if @bgp_generic_options -%><% bgp_generic_options.each do |name| %> <%= name[0] %> <%= name[1] %>
+<% end %><% end -%>
 !
 line vty
 !

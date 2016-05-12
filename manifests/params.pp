@@ -47,6 +47,9 @@ class quagga::params {
   #$bgp_route_maps is a hash of arrays with route-maps with options, ie
   # quagga::bgpd::bgp_route_maps => { 'ADVERTS permit 5' => [ 'match ip address prefix-list routes-from-external ', ' set as-path prepend 123 123', ], }
   $bgp_route_maps = undef
+  #$bgp_generic_options is an array of generic options for bgpd, ie
+  # quagga::bgpd::bgp_generic_options => { 'ip' => 'forwarding', 'ipv6' => 'forwarding' }
+  $bgp_generic_options = undef
   #$bgp_neighbors is an array in the format 
   # ISP1 => { 'neighbor_ip' => '192.0.2.1', 'neighbor_as' => '65001' }
   $bgp_neighbors = undef
