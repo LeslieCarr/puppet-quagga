@@ -20,42 +20,42 @@
 #
 # The watchquagga daemon is always started. Per default in monitoring-only but
 # that can be changed via /etc/quagga/debian.conf.
-<% if scope.lookupvar('quagga::params::zebra') %>
+<% if scope.lookupvar('zebra') %>
 zebra=yes
 <% else %>
 zebra=no
 <% end  %>
-<% if scope.lookupvar('quagga::params::bgpd') %>
+<% if scope.lookupvar('bgpd') %>
 bgpd=yes
 <% else %>
 bgpd=no
 <% end  %>
-<% if scope.lookupvar('quagga::params::ospfd') %>
+<% if scope.lookupvar('ospfd') %>
 ospfd=yes
 <% else %>
 ospfd=no
 <% end  %>
-<% if scope.lookupvar('quagga::params::ospf6d') %>
+<% if scope.lookupvar('ospf6d') %>
 ospf6d=yes
 <% else %>
 ospf6d=no
 <% end  %>
-<% if scope.lookupvar('quagga::params::ripd') %>
+<% if scope.lookupvar('ripd') %>
 ripd=yes
 <% else %>
 ripd=no
 <% end  %>
-<% if scope.lookupvar('quagga::params::ripngd') %>
+<% if scope.lookupvar('ripngd') %>
 ripngd=yes
 <% else %>
 ripngd=no
 <% end  %>
-<% if scope.lookupvar('quagga::params::isisd') %>
+<% if scope.lookupvar('isisd') %>
 isisd=yes
 <% else %>
 isisd=no
 <% end  %>
-<% if scope.lookupvar('quagga::params::babeld') %>
+<% if scope.lookupvar('babeld') %>
 babeld=yes
 <% else %>
 babeld=no

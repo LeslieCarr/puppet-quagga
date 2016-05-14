@@ -10,66 +10,79 @@
 #
 # === License
 # Apache v2
-class quagga
-{
-  package { 'quagga':
-    ensure   => present,
-    before   => Service['quagga']
+class quagga (
+  $manage_package = $quagga::params::manage_package,
+  $manage_service = $quagga::params::manage_service,
+  $zebra          = $quagga::params::zebra,
+  $bgpd           = $quagga::params::bgpd,
+  $ospfd          = $quagga::params::ospfd,
+  $ospf6d         = $quagga::params::ospf6d,
+  $ripd           = $quagga::params::ripd,
+  $ripngd         = $quagga::params::ripngd,
+  $isisd          = $quagga::params::isisd,
+  $babeld         = $quagga::params::babeld,
+) inherits quagga::params {
+  if $manage_package {
+    package { 'quagga':
+      ensure   => present,
+      before   => Service['quagga']
+    }
   }
 
-  service { 'quagga':
-    ensure      => running,
-    hasrestart  => true,
-    hasstatus   => false,
-    enable      => true,
+  if $manage_service {
+    service { 'quagga':
+      ensure      => running,
+      hasrestart  => true,
+      hasstatus   => false,
+      enable      => true,
+    }
+
+    file { '/etc/quagga/daemons':
+      mode    => '0644',
+      owner   => 'quagga',
+      group   => 'quagga',
+      content => template('quagga/daemons.erb'),
+      notify  => Service['quagga'],
+    }
+
+    file { '/etc/quagga/vtysh.conf':
+      mode    => '0644',
+      owner   => 'quagga',
+      group   => 'quagga',
+      content => template('quagga/vtysh.conf.erb'),
+      notify  => Service['quagga'],
+    }
   }
 
-  file { '/etc/quagga/daemons':
-    mode    => '0644',
-    owner   => 'quagga',
-    group   => 'quagga',
-    content => template('quagga/daemons.erb'),
-    notify  => Service['quagga'],
-  }
-
-  file { '/etc/quagga/vtysh.conf':
-    mode    => '0644',
-    owner   => 'quagga',
-    group   => 'quagga',
-    content => template('quagga/vtysh.conf.erb'),
-    notify  => Service['quagga'],
-  }
-
-  if $quagga::params::zebra == true {
+  if $zebra == true {
     include quagga::zebra
   }
 
-  if $quagga::params::bgpd == true {
+  if $bgpd == true {
     include quagga::bgpd
   }
 
-  if $quagga::params::ospfd == true {
+  if $ospfd == true {
     include quagga::ospfd
   }
 
-  if $quagga::params::ospf6d == true {
+  if $ospf6d == true {
     include quagga::ospf6d
   }
 
-  if $quagga::params::ripd == true {
+  if $ripd == true {
     include quagga::ripd
   }
 
-  if $quagga::params::ripngd == true {
+  if $ripngd == true {
     include quagga::ripngd
   }
 
-  if $quagga::params::isisd == true {
+  if $isisd == true {
     include quagga::isisd
   }
 
-  if $quagga::params::babeld == true {
+  if $babeld == true {
     include quagga::babeld
   }
-
 }
