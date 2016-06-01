@@ -15,11 +15,13 @@ class quagga::bgpd (
   $bgp_generic_options = $quagga::params::bgp_generic_options,
 ) {
 
-  file { '/etc/quagga/bgpd.conf':
-    mode    => '0644',
-    owner   => 'quagga',
-    group   => 'quagga',
-    content => template('quagga/bgpd.conf.erb'),
-    notify  => Service['quagga'],
+  unless single_config_file {
+    file { '/etc/quagga/bgpd.conf':
+      mode    => '0644',
+      owner   => 'quagga',
+      group   => 'quagga',
+      content => template('quagga/bgpd.conf.erb'),
+      notify  => Service['quagga'],
+    }
   }
 }
