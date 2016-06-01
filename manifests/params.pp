@@ -4,6 +4,8 @@ class quagga::params {
 
   $manage_package = true
   $manage_service = true
+  # Cumulus Linux defaults to use a single config file, Quagga.conf
+  $single_config_file = false
   # running zebra is highly recommended
   $zebra  = true
   $bgpd   = false
