@@ -25,7 +25,7 @@ class quagga::quagga (
   $zebra_generic_options = $quagga::params::zebra_generic_options,
 ) {
 
-  file { '/etc/quagga/bgpd.conf':
+  file { '/etc/quagga/Quagga.conf':
     mode    => '0644',
     owner   => 'quagga',
     group   => 'quagga',
