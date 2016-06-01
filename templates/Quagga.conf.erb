@@ -1,0 +1,43 @@
+log timestamp precision 6
+username cumulus nopassword
+log file <%= @zebra_log_file %>
+!
+<% if @zebra_interfaces -%><% zebra_interfaces.each do |name| %> interface <%= name[0] %> <% (0..name[1].length).each do |i| %>
+<% if name[1][i] %>  <%= name[1][i]%><% end %><% end %>!
+<% end %><% end -%>
+router bgp <%= scope.lookupvar('bgp_as') %>
+<% if @bgp_options -%><% (1..bgp_options.length).each do |i| %> bgp <%= bgp_options[i-1] %>
+<% end%>!
+<% end -%>
+<% if @bgp_networks -%><% (1..bgp_networks.length).each do |i| %> network <%= bgp_networks[i-1] %>
+<% end%>!
+<% end -%>
+<% if @bgp_neighbor_groups -%><% bgp_neighbor_groups.each do |name| %><% (0..name[1]['options'].length).each do |i| %><%
+ if name[1]['options'][i] %> neighbor <%= name[0] %> <%= name[1]['options'][i]%>
+<% end %><% end %><% if name[1]['members'] %><%
+(0..name[1]['members'].length).each do |i| %><% if name[1]['members'][i] %> neighbor <%= name[1]['members'][i]%> peer-group <%= name[0] %>
+<% end %><% end %><% end %><% end %>!
+<% end -%>
+<% if @bgp_neighbors -%><% (1..bgp_neighbors.length).each do |i| %> neighbor <%= bgp_neighbors[i-1] %>
+<% end%>!
+<% end -%>
+<% if @zebra_ip_routes -%><% (1..zebra_ip_routes.length).each do |i| %> ip route <%= zebra_ip_routes[i-1] %>
+<% end%>!
+<% end -%>
+<% if @zebra_generic_options -%><% zebra_generic_options.each do |name| %> <%= name[0] %> <%= name[1] %>
+<% end %><% end -%>
+<% if @bgp_accesslist -%><% bgp_accesslist.each do |name| %><% (0..name[1].length).each do |i| %><%
+ if name[1][i] %> access-list <%= name[0] %> <%= name[1][i]%>
+<% end %><% end %><% end %>!
+<% end -%>
+<% if @bgp_ip_prefix_list -%><% (1..bgp_ip_prefix_list.length).each do |i| %> ip prefix-list <%= bgp_ip_prefix_list[i-1] %>
+<% end%>!
+<% end -%>
+<% if @bgp_route_maps -%><% bgp_route_maps.each do |name| %> route-map <%= name[0] %> <% (0..name[1].length).each do |i| %>
+<% if name[1][i] %>  <%= name[1][i]%><% end %><% end %>!
+<% end %><% end -%>
+<% if @bgp_generic_options -%><% bgp_generic_options.each do |name| %> <%= name[0] %> <%= name[1] %>
+<% end %><% end -%>
+!
+line vty
+!
