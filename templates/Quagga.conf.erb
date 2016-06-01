@@ -24,8 +24,6 @@ router bgp <%= scope.lookupvar('bgp_as') %>
 <% if @zebra_ip_routes -%><% (1..zebra_ip_routes.length).each do |i| %> ip route <%= zebra_ip_routes[i-1] %>
 <% end%>!
 <% end -%>
-<% if @zebra_generic_options -%><% zebra_generic_options.each do |name| %> <%= name[0] %> <%= name[1] %>
-<% end %><% end -%>
 <% if @bgp_accesslist -%><% bgp_accesslist.each do |name| %><% (0..name[1].length).each do |i| %><%
  if name[1][i] %> access-list <%= name[0] %> <%= name[1][i]%>
 <% end %><% end %><% end %>!
@@ -37,6 +35,8 @@ router bgp <%= scope.lookupvar('bgp_as') %>
 <% if name[1][i] %>  <%= name[1][i]%><% end %><% end %>!
 <% end %><% end -%>
 <% if @bgp_generic_options -%><% bgp_generic_options.each do |name| %> <%= name[0] %> <%= name[1] %>
+<% end %><% end -%>
+<% if @zebra_generic_options -%><% zebra_generic_options.each do |name| %> <%= name[0] %> <%= name[1] %>
 <% end %><% end -%>
 !
 line vty
