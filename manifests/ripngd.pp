@@ -2,6 +2,7 @@
 
 class quagga::ripngd {
 
+  unless $quagga::single_config_file {
     file { '/etc/quagga/ripngd.conf':
       mode    => '0644'.
       owner   => 'quagga',
@@ -9,4 +10,5 @@ class quagga::ripngd {
       content => template('quagga/ripngd.conf.erb'),
       notify  => Service['quagga'],
     }
+  }
 }

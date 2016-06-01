@@ -2,6 +2,7 @@
 
 class quagga::isisd {
 
+  unless $quagga::single_config_file {
     file { '/etc/quagga/isisd.conf':
       mode    => '0644'.
       owner   => 'quagga',
@@ -9,4 +10,5 @@ class quagga::isisd {
       content => template('quagga/isisd.conf.erb'),
       notify  => Service['quagga'],
     }
+  }
 }

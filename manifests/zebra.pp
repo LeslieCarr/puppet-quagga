@@ -7,6 +7,8 @@ class quagga::zebra (
   $zebra_interfaces      = $quagga::params::zebra_interfaces,
   $zebra_generic_options = $quagga::params::zebra_generic_options,
 ) {
+
+  unless $single_config_file {
     file { '/etc/quagga/zebra.conf':
       mode    => '0644',
       owner   => 'quagga',
@@ -14,4 +16,5 @@ class quagga::zebra (
       content => template('quagga/zebra.conf.erb'),
       notify  => Service['quagga'],
     }
+  }
 }
