@@ -11,16 +11,17 @@
 # === License
 # Apache v2
 class quagga (
-  $manage_package = $quagga::params::manage_package,
-  $manage_service = $quagga::params::manage_service,
-  $zebra          = $quagga::params::zebra,
-  $bgpd           = $quagga::params::bgpd,
-  $ospfd          = $quagga::params::ospfd,
-  $ospf6d         = $quagga::params::ospf6d,
-  $ripd           = $quagga::params::ripd,
-  $ripngd         = $quagga::params::ripngd,
-  $isisd          = $quagga::params::isisd,
-  $babeld         = $quagga::params::babeld,
+  $manage_package     = $quagga::params::manage_package,
+  $manage_service     = $quagga::params::manage_service,
+  $single_config_file = $quagga::params::single_config_file,
+  $zebra              = $quagga::params::zebra,
+  $bgpd               = $quagga::params::bgpd,
+  $ospfd              = $quagga::params::ospfd,
+  $ospf6d             = $quagga::params::ospf6d,
+  $ripd               = $quagga::params::ripd,
+  $ripngd             = $quagga::params::ripngd,
+  $isisd              = $quagga::params::isisd,
+  $babeld             = $quagga::params::babeld,
 ) inherits quagga::params {
   if $manage_package {
     package { 'quagga':
@@ -54,35 +55,41 @@ class quagga (
     }
   }
 
-  if $zebra == true {
-    include quagga::zebra
+  unless $single_config_file {
+    if $zebra == true {
+      include quagga::zebra
+    }
+
+    if $bgpd == true {
+      include quagga::bgpd
+    }
+
+    if $ospfd == true {
+      include quagga::ospfd
+    }
+
+    if $ospf6d == true {
+      include quagga::ospf6d
+    }
+
+    if $ripd == true {
+      include quagga::ripd
+    }
+
+    if $ripngd == true {
+      include quagga::ripngd
+    }
+
+    if $isisd == true {
+      include quagga::isisd
+    }
+
+    if $babeld == true {
+      include quagga::babeld
+    }
   }
 
-  if $bgpd == true {
-    include quagga::bgpd
-  }
-
-  if $ospfd == true {
-    include quagga::ospfd
-  }
-
-  if $ospf6d == true {
-    include quagga::ospf6d
-  }
-
-  if $ripd == true {
-    include quagga::ripd
-  }
-
-  if $ripngd == true {
-    include quagga::ripngd
-  }
-
-  if $isisd == true {
-    include quagga::isisd
-  }
-
-  if $babeld == true {
-    include quagga::babeld
+  if $single_config_file {
+    include quagga::quagga
   }
 }
