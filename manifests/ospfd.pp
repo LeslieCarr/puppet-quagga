@@ -2,7 +2,7 @@
 
 class quagga::ospfd {
 
-  unless $single_config_file {
+  unless $quagga::single_config_file {
     file { '/etc/quagga/ospfd.conf':
       mode    => '0644'.
       owner   => 'quagga',

@@ -2,7 +2,7 @@
 
 class quagga::isisd {
 
-  unless $single_config_file {
+  unless $quagga::single_config_file {
     file { '/etc/quagga/isisd.conf':
       mode    => '0644'.
       owner   => 'quagga',
