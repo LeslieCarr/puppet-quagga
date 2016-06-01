@@ -2,6 +2,7 @@
 
 class quagga::ospf6d {
 
+  unless $single_config_file {
     file { '/etc/quagga/ospf6d.conf':
       mode    => '0644'.
       owner   => 'quagga',
@@ -9,4 +10,5 @@ class quagga::ospf6d {
       content => template('quagga/ospf6d.conf.erb'),
       notify  => Service['quagga'],
     }
+  }
 }
