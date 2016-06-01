@@ -15,7 +15,7 @@ class quagga::bgpd (
   $bgp_generic_options = $quagga::params::bgp_generic_options,
 ) {
 
-  unless single_config_file {
+  unless $single_config_file {
     file { '/etc/quagga/bgpd.conf':
       mode    => '0644',
       owner   => 'quagga',
