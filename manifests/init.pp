@@ -55,7 +55,7 @@ class quagga (
     }
   }
 
-  unless $single_config_file {
+  if $single_config_file == false {
     if $zebra == true {
       include quagga::zebra
     }
