@@ -8,7 +8,7 @@ class quagga::zebra (
   $zebra_generic_options = $quagga::params::zebra_generic_options,
 ) {
 
-  unless $single_config_file {
+  unless $single_config_file == true {
     file { '/etc/quagga/zebra.conf':
       mode    => '0644',
       owner   => 'quagga',

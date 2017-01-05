@@ -89,7 +89,7 @@ class quagga (
     }
   }
 
-  if $single_config_file {
+  if $single_config_file == true {
     include quagga::quagga
   }
 }
