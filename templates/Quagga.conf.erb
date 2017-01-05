@@ -21,6 +21,8 @@ router bgp <%= scope.lookupvar('bgp_as') %>
 <% if @bgp_neighbors -%><% (1..bgp_neighbors.length).each do |i| %> neighbor <%= bgp_neighbors[i-1] %>
 <% end%>!
 <% end -%>
+<% if @zebra_ip6_routes -%><% (1..zebra_ip6_routes.length).each do |i| %> ipv6 route <%= zebra_ip6_routes[i-1] %>
+<% end%>
 <% if @zebra_ip_routes -%><% (1..zebra_ip_routes.length).each do |i| %> ip route <%= zebra_ip_routes[i-1] %>
 <% end%>!
 <% end -%>
