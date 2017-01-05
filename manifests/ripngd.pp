@@ -2,7 +2,7 @@
 
 class quagga::ripngd {
 
-  unless $quagga::single_config_file {
+  unless $quagga::single_config_file == true {
     file { '/etc/quagga/ripngd.conf':
       mode    => '0644'.
       owner   => 'quagga',
