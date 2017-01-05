@@ -23,9 +23,10 @@ class quagga::params {
   $zebra_password = 'cn321'
   $zebra_enable_password = 'cn321'
   $zebra_log_file = '/var/log/quagga/zebra.log'
-  #$zebra_ip-route is an array of routes, ie
+  #$zebra_ip-routes is an array of routes, ie
   # quagga::zebra:bgp_ip-route => [ '0.0.0.0/0 192.168.0.1', '10.0.0.0/24 10.0.0.1', ],
-  $zebra_ip_route = undef
+  $zebra_ip_routes = undef
+  $zebra_ip6_routes = undef
   #$zebra_interfaces is a hash of arrays with interface parameters
   $zebra_interfaces = undef
   #$zebra_generic_options is an array of generic options for bgpd, ie
