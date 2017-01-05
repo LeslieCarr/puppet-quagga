@@ -7,7 +7,10 @@ router bgp <%= scope.lookupvar('bgp_as') %>
 <% if @bgp_options -%><% (1..bgp_options.length).each do |i| %> bgp <%= bgp_options[i-1] %>
 <% end%>!
 <% end -%>
-<% if @bgp_networks6 -%><% (1..bgp_networks6.length).each do |i| %> network <%= bgp_networks6[i-1] %>
+<% if @bgp_networks6 -%>
+address-family ipv6
+<% (1..bgp_networks6.length).each do |i| %> network <%= bgp_networks6[i-1] %>
+exit-address-family
 <% end%>!
 <% if @bgp_networks -%><% (1..bgp_networks.length).each do |i| %> network <%= bgp_networks[i-1] %>
 <% end%>!
