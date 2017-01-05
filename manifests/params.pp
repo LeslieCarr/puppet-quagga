@@ -41,6 +41,7 @@ class quagga::params {
   #$bgp_networks is an array of bgp networks, ie
   # quagga::bgpd::bgp_networks => [ '0.0.0.0/0', '192.168.0.0/24', ],
   $bgp_networks = undef
+  $bgp_networks6 = undef
   #$bgp_options is an array of bgp options, ie
   # quagga::bgpd::bgp_options => [ 'log-neighbor-changes', 'router-id 192.168.0.1', ],
   $bgp_options = undef
