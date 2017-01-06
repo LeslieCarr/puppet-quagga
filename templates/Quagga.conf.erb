@@ -9,12 +9,6 @@ router bgp <%= scope.lookupvar('bgp_as') %>
 <% if @bgp_options -%><% (1..bgp_options.length).each do |i| %> bgp <%= bgp_options[i-1] %>
 <% end%>!
 <% end -%>
-<% if @bgp_networks6 -%>
- address-family ipv6
-<% (1..bgp_networks6.length).each do |i| %> network <%= bgp_networks6[i-1] %>
-<% end%> exit-address-family
-!
-<% end -%>
 <% if @bgp_networks -%><% (1..bgp_networks.length).each do |i| %> network <%= bgp_networks[i-1] %>
 <% end%>!
 <% end -%>
@@ -26,6 +20,12 @@ router bgp <%= scope.lookupvar('bgp_as') %>
 <% end -%>
 <% if @bgp_neighbors -%><% (1..bgp_neighbors.length).each do |i| %> neighbor <%= bgp_neighbors[i-1] %>
 <% end%>!
+<% end -%>
+<% if @bgp_networks6 -%>
+ address-family ipv6
+<% (1..bgp_networks6.length).each do |i| %> network <%= bgp_networks6[i-1] %>
+<% end%> exit-address-family
+!
 <% end -%>
 <% if @zebra_ip6_routes -%><% (1..zebra_ip6_routes.length).each do |i| %> ipv6 route <%= zebra_ip6_routes[i-1] %>
 <% end%>!
