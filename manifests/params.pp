@@ -38,7 +38,7 @@ class quagga::params {
   $bgp_password = 'cn321'
   $bgp_as = '65001'
   $bgp_logfile = '/var/log/quagga/bgpd.log'
-  #$bgp_networks is an array of bgp networks, ie
+  #$bgp_networks and bgp_networks6 are arrays of bgp networks, ie
   # quagga::bgpd::bgp_networks => [ '0.0.0.0/0', '192.168.0.0/24', ],
   $bgp_networks = undef
   $bgp_networks6 = undef
@@ -47,6 +47,7 @@ class quagga::params {
   $bgp_options = undef
   #$bgp_neighbor_group is a hash of arrays with group names and options, ie
   # quagga::bgpd::bgp_neighbor_groups => { 'name-of-group': options => [ 'peer-group', 'remote-as 65535', ], members => [ '192.168.0.10', '192.168.0.11', ], }
+  # You can add members and/or members6 (also specify networks6)
   $bgp_neighbor_groups = undef
   #$bgp_neighbors is an array of of neighbor comands
   $bgp_neighbors = undef
